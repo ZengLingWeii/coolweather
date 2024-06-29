@@ -40,7 +40,7 @@ public class Utility {
     public static boolean handleCityResponse(String response,int provinceId){
         if (!TextUtils.isEmpty(response)){
             try {
-                JSONArray allCity = new JSONArray();
+                JSONArray allCity = new JSONArray(response);
                 for (int i = 0; i < allCity.length(); i++) {
                     JSONObject cityObject = allCity.getJSONObject(i);
                     City city = new City();
@@ -63,9 +63,9 @@ public class Utility {
     public static boolean handleCountyResponse(String response,int cityId){
         if (!TextUtils.isEmpty(response)){
             try {
-                JSONArray allCounty = new JSONArray();
+                JSONArray allCounty = new JSONArray(response);
                 for (int i = 0; i < allCounty.length(); i++) {
-                    JSONObject countryObject = new JSONObject();
+                    JSONObject countryObject = allCounty.getJSONObject(i);
                     County county = new County();
                     county.setCountryName(countryObject.getString("name"));
                     county.setWeatherId(countryObject.getString("weather_id"));
